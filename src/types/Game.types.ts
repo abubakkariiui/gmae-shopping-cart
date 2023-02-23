@@ -2,12 +2,21 @@ interface Game {
   id: number;
   slug: string;
   name: string;
-  description?: string;
-  website?: string;
+  price: number;
+  ratings_count: number;
+  description: string;
+  website: string;
   released: string;
   background_image: string;
   metacritic: number;
   parent_platforms: {
+    platform: {
+      id: number;
+      slug: string;
+      name: string;
+    };
+  }[];
+  platforms: {
     platform: {
       id: number;
       slug: string;

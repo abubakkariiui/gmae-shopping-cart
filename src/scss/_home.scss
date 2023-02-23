@@ -1,4 +1,4 @@
-@use 'colors';
+@use "colors";
 
 $min-card-height: 125px;
 
@@ -7,13 +7,13 @@ $min-card-height: 125px;
 
   margin: {
     block: 10px 50px;
-    inline: calc(clamp(10px, 3vw, 50px) + 8px)
+    inline: calc(clamp(10px, 3vw, 50px) + 8px);
   }
 
   display: grid;
   grid-template-columns: 1fr max(25%, $min-card-height);
   grid-template-rows: repeat(3, 1fr) min-content;
-  gap: clamp(12px, 2.5vw, 25px);
+  gap: clamp(15px, 2.5vw, 25px);
   flex: 1 1;
 
   .GameCard {
@@ -51,10 +51,12 @@ $min-card-height: 125px;
       flex-direction: column;
       align-items: stretch;
       justify-content: flex-end;
-      background: linear-gradient(to top,
-          rgba(0, 0, 0, 0.95),
-          rgba(0, 0, 0, 0.75) 15%,
-          rgba(0, 0, 0, 0) 40%);
+      background: linear-gradient(
+        to top,
+        rgba(0, 0, 0, 0.95),
+        rgba(0, 0, 0, 0.75) 15%,
+        rgba(0, 0, 0, 0) 40%
+      );
 
       h3 {
         padding: {
@@ -63,8 +65,7 @@ $min-card-height: 125px;
         }
 
         font-size: 14px;
-        transition: color 1.25s,
-        font-size 1.25s;
+        transition: color 1.25s, font-size 1.25s;
       }
 
       .ProgressBar {
@@ -75,22 +76,24 @@ $min-card-height: 125px;
     }
   }
 
-  .Button.Store {
+  .a.Store {
     margin-left: 3%;
-    padding-inline: 0;
     justify-self: center;
-    color: white;
 
-    font: {
-      size: clamp(20px, 2.5vw, 28px);
-      weight: 600;
-    }
+    .Button {
+      padding-inline: 0;
+      color: white;
+      font: {
+        size: clamp(20px, 2.5vw, 28px);
+        weight: 600;
+      }
 
-    &:hover {
-      color: colors.$accent;
+      &:hover {
+        color: colors.$accent;
 
-      svg {
-        transform: translateX(5px)
+        svg {
+          transform: translateX(5px);
+        }
       }
     }
   }
@@ -106,7 +109,7 @@ $min-card-height: 125px;
       grid-row: 1 / 2;
     }
 
-    .Button.Store {
+    .a.Store {
       margin-left: 1%;
       grid-column: 1 / 4;
     }

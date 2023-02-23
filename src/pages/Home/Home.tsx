@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { RiArrowRightLine } from 'react-icons/ri';
-import { Button } from '../../components';
+import { Transition, Button } from '../../components';
 import { Game } from '../../types/Game.types';
 import GameCard from './components/GameCard';
 
@@ -15,10 +15,18 @@ const cycleArray = (array: Game[]) => {
   newArray.push(newArray.shift() as Game);
   return newArray;
 };
+const getRandomGames = (games: Game[]): Game[] => {
+  const randomGames = new Set();
+  while(randomGames.size < 4) {
+    const index = Math.floor(Math.random() * games.length);
+    randomGames.add(games[index]);
+  }
+  return [...randomGames] as Game[];
+};
 
 function Home(props: Props) {
   const { games } = props;
-  const [homeGames, setHomeGames] = useState(games.slice(0, 4));
+  const [homeGames, setHomeGames] = useState(getRandomGames(games));
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -28,12 +36,7 @@ function Home(props: Props) {
   }, []);
 
   return (
-    <motion.div
-      className="Home"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.5 }}
-    >
+    <Transition className="Home" direction="left">
       {homeGames.map(({ id, name, background_image }, i) => (
         <GameCard
           key={id}
@@ -44,10 +47,12 @@ function Home(props: Props) {
           big={i === 0}
         />
       ))}
-      <Button className="Store">
-        Go to the store <RiArrowRightLine />
-      </Button>
-    </motion.div>
+      <Link to="games" className="Store">
+        <Button>
+          Go to the store <RiArrowRightLine />
+        </Button>
+      </Link>
+    </Transition>
   );
 }
 
